@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Global Travel Experience</title>
+    <style>
+        :root {
+            --primary: #ff7700;
+            --primary-dark: #e65c00;
+            --secondary: #00c2ff;
+            --dark: #111111;
+            --darker: #050505;
+            --light: #ffffff;
+            --light-gray: #f5f5f5;
+            --accent: #8a2be2;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/1.png');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 119, 0, 0.3), rgba(0, 0, 0, 0.8));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: var(--light-gray);
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Destinations Section */
+        .destinations {
+            background: linear-gradient(to right, var(--dark), var(--darker));
+            position: relative;
+        }
+        
+        .destinations::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(255, 119, 0, 0.15), transparent 50%);
+            z-index: 0;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card {
+            background: rgba(17, 17, 17, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 119, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 119, 0, 0.2);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .card p {
+            color: var(--light-gray);
+            line-height: 1.6;
+        }
+        
+        /* Itineraries Section */
+        .itineraries {
+            background: linear-gradient(to left, var(--dark), var(--darker));
+            position: relative;
+        }
+        
+        .itineraries::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at bottom left, rgba(0, 194, 255, 0.15), transparent 50%);
+            z-index: 0;
+        }
+        
+        /* Guides Section */
+        .guides {
+            background: linear-gradient(to right, var(--dark), var(--darker));
+            position: relative;
+        }
+        
+        .guides::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1), transparent 60%);
+            z-index: 0;
+        }
+        
+        /* Adventure Section */
+        .adventure {
+            background: linear-gradient(to left, var(--dark), var(--darker));
+            position: relative;
+            text-align: center;
+        }
+        
+        .adventure::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at bottom right, rgba(255, 119, 0, 0.15), transparent 50%);
+            z-index: 0;
+        }
+        
+        .adventure p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--light-gray);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            padding: 40px 0;
+            background: rgba(17, 17, 17, 0.7);
+            position: relative;
+        }
+        
+        .social-proof h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--light-gray);
+        }
+        
+        .testimonial .author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 119, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 119, 0, 0.4);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(255, 119, 0, 0.3);
+        }
+        
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            color: var(--light);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.5);
+            z-index: 100;
+            white-space: nowrap;
+            min-width: 250px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(138, 43, 226, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(138, 43, 226, 0);
+            }
+        }
+        
+        /* Tech Lines Animation */
+        .tech-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        .line {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+            animation: moveLine 20s infinite linear;
+        }
+        
+        .line:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .line:nth-child(2) {
+            left: 30%;
+            animation-delay: 5s;
+        }
+        
+        .line:nth-child(3) {
+            left: 50%;
+            animation-delay: 2s;
+        }
+        
+        .line:nth-child(4) {
+            left: 70%;
+            animation-delay: 7s;
+        }
+        
+        .line:nth-child(5) {
+            left: 90%;
+            animation-delay: 3s;
+        }
+        
+        @keyframes moveLine {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            section h2 {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                gap: 1rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .floating-btn {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+                min-width: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Tech Lines Animation -->
+    <div class="tech-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Explore the infinite possibilities of the world</h1>
+            <h2>Global travel, at your fingertips</h2>
+            <p>Your free travel guide. Want to escape the constraints of everyday life? Whether you're a backpacker or a luxury traveler, we provide the most comprehensive travel guides to help you explore the beauty of the world.</p>
+            <button class="btn" onclick="ott()">JOIN NOW</button>
+        </div>
+    </section>
+    
+    <!-- Destinations Section -->
+    <section class="destinations">
+        <div class="container">
+            <h2>Featured Travel Destinations</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>European Dream Tour</h3>
+                    <p>Visit historic cities, taste local cuisine, and immerse yourself in a sea of culture.</p>
+                </div>
+                <div class="card">
+                    <h3>Asian Adventure Tour</h3>
+                    <p>From bustling cities to peaceful countryside, experience diverse cultures and natural landscapes.</p>
+                </div>
+                <div class="card">
+                    <h3>American Exploration Tour</h3>
+                    <p>Explore magnificent natural wonders and feel the warmth of the local culture.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn" onclick="ott()">JOIN NOW</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Itineraries Section -->
+    <section class="itineraries">
+        <div class="container">
+            <h2>Customized Itineraries</h2>
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <p>No longer limited to fixed routes, our expert team creates personalized itineraries for you, ensuring every trip is full of surprises.</p>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button class="btn" onclick="ott()">JOIN NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Guides Section -->
+    <section class="guides">
+        <div class="container">
+            <h2>Practical Travel Guides</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Visa Guide</h3>
+                    <p>Easily navigate the visa application process for various countries.</p>
+                </div>
+                <div class="card">
+                    <h3>Safety Tips</h3>
+                    <p>Master travel safety basics to ensure a worry-free journey.</p>
+                </div>
+                <div class="card">
+                    <h3>Budget Planning</h3>
+                    <p>Learn how to save money while enjoying your travels to the fullest.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Adventure Section -->
+    <section class="adventure">
+        <div class="container">
+            <h2>Start Your Adventure</h2>
+            <p>Register now to get exclusive travel tips and the latest destination recommendations. Begin your global travel journey today!</p>
+            <button class="btn" onclick="ott()">JOIN NOW</button>
+        </div>
+    </section>
+    
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <h2>What Our Travelers Say</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p>"I never thought planning a trip could be this easy. The customized itinerary was perfect for my needs!"</p>
+                    <div class="author">- Michael R.</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Their safety tips saved me from potential trouble during my Southeast Asia trip. Highly recommended!"</p>
+                    <div class="author">- Sarah L.</div>
+                </div>
+                <div class="testimonial">
+                    <p>"The budget planning guide helped me enjoy a 2-week European tour without breaking the bank."</p>
+                    <div class="author">- David K.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Floating Button -->
+    <button class="floating-btn" onclick="ott()">JOIN OUR GLOBAL TRAVEL COMMUNITY NOW</button>
+    
+    <script>
+        function ott() {
+            window.location.href = "https://line.me/";
+        }
+    </script>
+</body>
+</html>
